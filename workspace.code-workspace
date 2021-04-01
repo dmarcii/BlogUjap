@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\..\\..\\esp\\esp-idf\\blink"
+		},
+		{
+			"path": ".."
+		}
+	],
+	"settings": {}
+}

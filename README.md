@@ -1,2 +1,1 @@
-# Landing
-Componente landing de la pagina
+# Codigo por separado

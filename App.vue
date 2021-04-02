@@ -23,9 +23,9 @@
           <li class="nav-item">
             <a class="nav-link btn btn-info" href="#servicios">Servicios</a>
           </li>
-
-         
-
+          <li class="nav-item">
+            <a class="nav-link btn btn-info" href="#gallery">Galeria</a>
+          </li>
        
         </ul>
       </nav>
@@ -48,8 +48,6 @@
    
       </div>
 </div>
-
-
 
 <div id ="servicios">
 
@@ -169,7 +167,6 @@
 </div>
 </div>
 
-
 <!-- Formulario -->
 <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -229,6 +226,74 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+<div class="gallery">
+
+
+<div class="card text-light bg-info" style="height: 30rem;">
+  <div class="card-body">
+
+  <h4>Galeria</h4>
+
+<br>
+
+
+
+<div class="card-deck">
+
+<dir></dir>
+ 
+       <tr v-for="v in videos" v-bind:key = 'v.id'>
+
+<td>
+  <button type="button" class="btn btn-info" id="modal1" data-toggle="modal" data-target="#exampleModalCenter5"
+   style="width:340px;height:340px;"> 
+  <img v-bind:src='v.img' alt="">
+  
+</button>
+
+<dir></dir>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter5" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content bg-dark">
+      <div class="modal-header text-white">
+        <h5 class="modal-title" id="exampleModalLongTitle">{{v.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-white">
+      <h6>categoria: {{v.ca1}}</h6>  
+      <h6>Nivel estudiantil: {{v.ca2}}</h6>  
+      <h6>Tipo de clase: {{v.sca1}}</h6>  
+      <h6>Subtítulos: {{v.sca2}}</h6>  
+      
+      <iframe id="Geeks3" width="450" height="350"
+                                    v-bind:src= 'v.url' 
+                                    frameborder="0" allowfullscreen> 
+                            </iframe> 
+      </div>
+    </div>
+  </div>
+</div>
+
+</td>
+       </tr>
+
+
+
+
+</div>
+
+</div>
+
+
 
 
 
@@ -319,6 +384,11 @@
   <!-- Copyright -->
 </footer>
   </div>
+  </div>
+
+
+
+  </div>
 </template>
 
 
@@ -368,22 +438,23 @@ import config from './config';
 const app = Firebase.initializeApp(config);
 const db = app.database();
 const websitesRef = db.ref('websites');
+const videoref = db.ref('videos');
 import { rtdbPlugin as VueFire } from 'vuefire'
-  Vue.use(VueFire)
+Vue.use(VueFire)
 
-
-// toast
 export default {
 
   name: 'App',
 
   firebase: {
   websites: websitesRef,
+  videos: videoref,
   },
 
   data () {
     return {
       cont: 0,
+      videos: [],
       websites: [],
       newWebsite: {
         name: '',
